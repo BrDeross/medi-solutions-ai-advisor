@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Medi-Solutions Medicare AI Advisor</title>
+  <style>
+    :root{
+      --primary:#0A4DA2;
+      --primary-dark:#083b7d;
+      --primary-light:#eaf3ff;
+      --gold:#d4af37;
+      --bg:#f4f7fb;
+      --card:#ffffff;
+      --text:#1f2937;
+      --muted:#6b7280;
+      --border:#e5e7eb;
+      --shadow:0 10px 30px rgba(0,0,0,0.08);
+      --shadow-hover:0 16px 36px rgba(0,0,0,0.14);
+      --radius:18px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      background:var(--bg);
+      color:var(--text);
+    }
+
+    .topbar{
+      background:linear-gradient(90deg,var(--primary),var(--primary-dark));
+      color:#fff;
+      box-shadow:0 4px 18px rgba(0,0,0,0.12);
+    }
+
+    .topbar-inner{
+      max-width:1200px;
+      margin:0 auto;
+      padding:14px 20px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+
+    .logo{
+      height:56px;
+      width:auto;
+      max-width:180px;
+      object-fit:contain;
+      border-radius:12px;
+      background:#fff;
+      padding:6px;
+      box-shadow:0 4px 14px rgba(0,0,0,0.15);
+      display:block;
+    }
+
+    .brand-text h1{
+      margin:0;
+      color:#fff;
+      font-size:24px;
+      line-height:1.1;
+    }
+
+    .brand-text p{
+      margin:4px 0 0;
+      color:#dbeafe;
+      font-size:14px;
+    }
+
+    .nav{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .nav a{
+      color:#fff;
+      text-decoration:none;
+      padding:10px 14px;
+      border:1px solid rgba(255,255,255,0.18);
+      border-radius:12px;
+      font-size:14px;
+      font-weight:600;
+      background:rgba(255,255,255,0.08);
+      transition:0.2s ease;
+    }
+
+    .nav a:hover{
+      background:rgba(255,255,255,0.18);
+      transform:translateY(-1px);
+    }
+
+    .hero{
+      max-width:1200px;
+      margin:30px auto 24px;
+      padding:0 20px;
+    }
+
+    .hero-box{
+      background:linear-gradient(135deg,#ffffff,#eff6ff);
+      border:1px solid var(--border);
+      border-radius:24px;
+      padding:36px;
+      box-shadow:var(--shadow);
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:24px;
+      align-items:center;
+    }
+
+    .hero-copy h2{
+      margin:0 0 12px;
+      font-size:38px;
+      color:var(--primary-dark);
+      line-height:1.15;
+    }
+
+    .hero-copy p{
+      margin:0 0 16px;
+      color:var(--muted);
+      font-size:17px;
+      line-height:1.65;
+    }
+
+    .button-row{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:18px;
+    }
+
+    .btn{
+      display:inline-block;
+      padding:14px 18px;
+      border-radius:14px;
+      text-decoration:none;
+      font-weight:700;
+      transition:0.2s ease;
+      border:1px solid transparent;
+    }
+
+    .btn-primary{
+      background:var(--primary);
+      color:#fff;
+    }
+
+    .btn-primary:hover{
+      background:var(--primary-dark);
+      transform:translateY(-2px);
+    }
+
+    .btn-secondary{
+      background:#fff;
+      color:var(--primary-dark);
+      border-color:var(--border);
+    }
+
+    .btn-secondary:hover{
+      transform:translateY(-2px);
+      box-shadow:var(--shadow);
+    }
+
+    .hero-card{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:20px;
+      padding:22px;
+      box-shadow:var(--shadow);
+    }
+
+    .hero-card h3{
+      margin:0 0 10px;
+      color:var(--primary-dark);
+      font-size:20px;
+    }
+
+    .hero-card ul{
+      margin:0;
+      padding-left:18px;
+      color:var(--muted);
+      line-height:1.7;
+      font-size:14px;
+    }
+
+    .section{
+      max-width:1200px;
+      margin:0 auto 42px;
+      padding:0 20px;
+    }
+
+    .section-header{
+      margin-bottom:18px;
+    }
+
+    .section-header h3{
+      margin:0;
+      font-size:28px;
+      color:var(--primary-dark);
+    }
+
+    .section-header p{
+      margin:8px 0 0;
+      color:var(--muted);
+      font-size:15px;
+      line-height:1.6;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:20px;
+    }
+
+    .card{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:20px;
+      padding:24px;
+      box-shadow:var(--shadow);
+      transition:0.2s ease;
+    }
+
+    .card:hover{
+      transform:translateY(-4px);
+      box-shadow:var(--shadow-hover);
+    }
+
+    .icon{
+      font-size:34px;
+      margin-bottom:10px;
+    }
+
+    .card h4{
+      margin:0 0 8px;
+      font-size:20px;
+      color:var(--text);
+    }
+
+    .card p{
+      margin:0;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.65;
+    }
+
+    .steps{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:20px;
+    }
+
+    .step{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:20px;
+      padding:22px;
+      box-shadow:var(--shadow);
+    }
+
+    .step-number{
+      width:38px;
+      height:38px;
+      border-radius:999px;
+      background:var(--primary);
+      color:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:800;
+      margin-bottom:12px;
+    }
+
+    .step h4{
+      margin:0 0 8px;
+      color:var(--primary-dark);
+      font-size:18px;
+    }
+
+    .step p{
+      margin:0;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.6;
+    }
+
+    .cta{
+      background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+      color:#fff;
+      border-radius:24px;
+      padding:34px;
+      box-shadow:var(--shadow);
+    }
+
+    .cta h3{
+      margin:0 0 10px;
+      font-size:30px;
+      line-height:1.2;
+    }
+
+    .cta p{
+      margin:0 0 18px;
+      color:#dbeafe;
+      line-height:1.7;
+      font-size:15px;
+      max-width:850px;
+    }
+
+    .footer{
+      background:#fff;
+      border-top:1px solid var(--border);
+      padding:24px 20px;
+      margin-top:40px;
+    }
+
+    .footer-inner{
+      max-width:1200px;
+      margin:0 auto;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.7;
+    }
+
+    @media (max-width: 900px){
+      .hero-box{grid-template-columns:1fr}
+      .hero-copy h2{font-size:30px}
+    }
+
+    @media (max-width: 760px){
+      .logo{height:48px;max-width:140px}
+      .brand-text h1{font-size:20px}
+      .nav{width:100%}
+      .hero-box{padding:24px}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <img src="./medi-solutions-logo.png" alt="Medi-Solutions Logo" class="logo">
+        <div class="brand-text">
+          <h1>Medi-Solutions Medicare AI Advisor</h1>
+          <p>Plain-English Medicare guidance</p>
+        </div>
+      </div>
+
+      <div class="nav">
+        <a href="#how-it-works">How It Works</a>
+        <a href="#topics">What It Covers</a>
+        <a href="#next-step">Next Step</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-box">
+      <div class="hero-copy">
+        <h2>Confused About Medicare? Start Here.</h2>
+        <p>
+          Our AI Advisor helps explain Medicare in plain English so you can better understand your options,
+          avoid common mistakes, and feel more confident before speaking with a licensed advisor.
+        </p>
+        <p>
+          It covers timing, costs, enrollment periods, penalties, IRMAA, employer coverage, plan types,
+          and more — without pressure.
+        </p>
+
+        <div class="button-row">
+          <a class="btn btn-primary" href="YOUR_JOTFORM_LINK" target="_blank">Request a Medicare Review</a>
+          <a class="btn btn-secondary" href="YOUR_CALENDLY_LINK" target="_blank">Schedule a Call</a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <h3>What the AI Advisor helps with</h3>
+        <ul>
+          <li>Turning 65 and not sure what to do next</li>
+          <li>Still working and wondering if you need Medicare</li>
+          <li>Understanding Medicare Parts A, B, C, and D</li>
+          <li>Comparing Medicare Advantage and Medigap</li>
+          <li>Explaining IRMAA and possible penalties</li>
+          <li>Clarifying enrollment timelines and deadlines</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="topics">
+    <div class="section-header">
+      <h3>What It Covers</h3>
+      <p>
+        The AI Advisor is designed to educate first. It helps prospects understand the Medicare landscape
+        before deciding whether they want a licensed advisor to review their situation.
+      </p>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="icon">🩺</div>
+        <h4>Medicare Basics</h4>
+        <p>Learn the difference between Parts A, B, C, and D in plain English.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">📅</div>
+        <h4>Enrollment Timelines</h4>
+        <p>Understand Initial Enrollment, Special Enrollment, and annual election periods.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">⚠️</div>
+        <h4>Penalties</h4>
+        <p>See when late enrollment penalties can apply and how to avoid common mistakes.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">💵</div>
+        <h4>Costs & IRMAA</h4>
+        <p>Review premiums, income-related Medicare costs, and other out-of-pocket considerations.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">⚖️</div>
+        <h4>Plan Types</h4>
+        <p>Compare Medicare Advantage and Medigap based on how they work, not sales hype.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🏢</div>
+        <h4>Employer Coverage</h4>
+        <p>Understand how Medicare works if you are still employed or covered through an employer plan.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="how-it-works">
+    <div class="section-header">
+      <h3>How It Works</h3>
+      <p>The process is simple and built to reduce confusion, not create pressure.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">1</div>
+        <h4>Ask Your Questions</h4>
+        <p>Start with what you want to understand most — timing, costs, penalties, employer coverage, or plan types.</p>
+      </div>
+
+      <div class="step">
+        <div class="step-number">2</div>
+        <h4>Get Plain-English Guidance</h4>
+        <p>The AI Advisor explains the Medicare rules in simple language and helps clarify your situation.</p>
+      </div>
+
+      <div class="step">
+        <div class="step-number">3</div>
+        <h4>Receive a Medicare Snapshot</h4>
+        <p>Once enough information is gathered, you can receive a simple summary of your likely path and key things to confirm.</p>
+      </div>
+
+      <div class="step">
+        <div class="step-number">4</div>
+        <h4>Choose Your Next Step</h4>
+        <p>If you want, you can request a review or schedule a quick call with a licensed advisor.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="next-step">
+    <div class="cta">
+      <h3>Want a Licensed Advisor to Review Your Situation?</h3>
+      <p>
+        If you'd like, a licensed advisor can review your Medicare situation and help confirm the best path
+        based on your location, current coverage, and timing.
+      </p>
+
+      <div class="button-row">
+        <a class="btn btn-primary" href="YOUR_JOTFORM_LINK" target="_blank">Submit for Review</a>
+        <a class="btn btn-secondary" href="YOUR_CALENDLY_LINK" target="_blank">Schedule a Call</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-inner">
+      <strong>Important:</strong> This page is for educational purposes only and does not replace guidance from a licensed advisor.
+      Plan availability, costs, and eligibility vary by location and individual situation.
+    </div>
+  </div>
+
+</body>
+</html>
