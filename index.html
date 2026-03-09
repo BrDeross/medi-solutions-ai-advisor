@@ -331,6 +331,40 @@
       line-height:1.7;
     }
 
+    .chat-bubble{
+      position:fixed;
+      right:20px;
+      bottom:20px;
+      z-index:200;
+      background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+      color:#fff;
+      text-decoration:none;
+      border-radius:999px;
+      padding:14px 18px;
+      font-weight:700;
+      box-shadow:0 14px 30px rgba(10,77,162,0.35);
+      display:flex;
+      align-items:center;
+      gap:10px;
+      transition:0.2s ease;
+    }
+
+    .chat-bubble:hover{
+      transform:translateY(-3px);
+      box-shadow:0 20px 36px rgba(10,77,162,0.42);
+    }
+
+    .chat-bubble .bubble-icon{
+      width:34px;
+      height:34px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.18);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:18px;
+    }
+
     @media (max-width: 900px){
       .hero-box{grid-template-columns:1fr}
       .hero-copy h2{font-size:30px}
@@ -341,6 +375,12 @@
       .brand-text h1{font-size:20px}
       .nav{width:100%}
       .hero-box{padding:24px}
+      .chat-bubble{
+        right:14px;
+        bottom:14px;
+        padding:12px 14px;
+        font-size:14px;
+      }
     }
   </style>
 </head>
@@ -378,7 +418,8 @@
         </p>
 
         <div class="button-row">
-          <a class="btn btn-primary" href="https://form.jotform.com/260643918176060" target="_blank" rel="noopener noreferrer">Request a Medicare Review</a>
+          <a class="btn btn-primary" href="https://chatgpt.com/g/g-69aa01af277881919b3b00642d8263d8-medicare-ai-advisor" target="_blank" rel="noopener noreferrer">Start the AI Advisor</a>
+          <a class="btn btn-secondary" href="https://form.jotform.com/260643918176060" target="_blank" rel="noopener noreferrer">Request a Medicare Review</a>
           <a class="btn btn-secondary" href="https://scheduler.zoom.us/brian-deross/medicare-review" target="_blank" rel="noopener noreferrer">Schedule a Call</a>
         </div>
       </div>
@@ -473,21 +514,22 @@
       <div class="step">
         <div class="step-number">4</div>
         <h4>Choose Your Next Step</h4>
-        <p>If you want, you can request a review or schedule a quick call with a licensed advisor.</p>
+        <p>If you want, you can continue with the AI Advisor, submit for review, or schedule a quick call.</p>
       </div>
     </div>
   </div>
 
   <div class="section" id="next-step">
     <div class="cta">
-      <h3>Want a Licensed Advisor to Review Your Situation?</h3>
+      <h3>Ready to Take the Next Step?</h3>
       <p>
-        If you'd like, a licensed advisor can review your Medicare situation and help confirm the best path
-        based on your location, current coverage, and timing.
+        Start with the Medicare AI Advisor for plain-English guidance, or go straight to a licensed advisor review
+        if you already know you want help confirming the best path.
       </p>
 
       <div class="button-row">
-        <a class="btn btn-primary" href="https://form.jotform.com/260643918176060" target="_blank" rel="noopener noreferrer">Submit for Review</a>
+        <a class="btn btn-primary" href="https://chatgpt.com/g/g-69aa01af277881919b3b00642d8263d8-medicare-ai-advisor" target="_blank" rel="noopener noreferrer">Open the AI Advisor</a>
+        <a class="btn btn-secondary" href="https://form.jotform.com/260643918176060" target="_blank" rel="noopener noreferrer">Submit for Review</a>
         <a class="btn btn-secondary" href="https://scheduler.zoom.us/brian-deross/medicare-review" target="_blank" rel="noopener noreferrer">Schedule a Call</a>
       </div>
     </div>
@@ -499,6 +541,11 @@
       Plan availability, costs, and eligibility vary by location and individual situation.
     </div>
   </div>
+
+  <a class="chat-bubble" href="https://chatgpt.com/g/g-69aa01af277881919b3b00642d8263d8-medicare-ai-advisor" target="_blank" rel="noopener noreferrer">
+    <span class="bubble-icon">💬</span>
+    <span>Ask the AI Advisor</span>
+  </a>
 
 </body>
 </html>
